@@ -1,0 +1,54 @@
+{% extends 'portfolio/base.html' %}
+{% load static %}
+
+{% block title %}Projects — Ogboru Reward{% endblock %}
+
+{% block content %}
+
+<section class="page-header text-center mb-5">
+  <div class="container">
+    <h1 class="page-header-title">My Work</h1>
+    <p class="lead text-light-emphasis mt-3">
+      A collection of my projects in mechanical engineering and software development.
+    </p>
+  </div>
+</section>
+
+<div class="row">
+  {% for p in projects %}
+    <div class="col-lg-4 col-md-6 mb-4">
+      <div class="card project-card h-100">
+        <div class="project-image">
+          {% if p.image %}
+            <img src="{{ p.image.url }}" class="card-img-top" alt="{{ p.title }}">
+          {% else %}
+            <img src="https://via.placeholder.com/400x250/1E1E1E/E0E0E0?text=Project+Image" class="card-img-top" alt="{{ p.title }}">
+          {% endif %}
+          <div class="project-overlay">
+              <a href="{% url 'portfolio:project_detail' p.pk %}" class="btn btn-accent">View Details</a>
+          </div>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{ p.title }}</h5>
+          <div class="project-tags mb-2">
+              <span class="badge category-badge me-1">{{ p.category.name }}</span>
+              {% for tech in p.technologies.all|slice:":2" %}
+                  <span class="badge tech-badge">{{ tech.name }}</span>
+              {% endfor %}
+          </div>
+          <p class="card-text">{{ p.description|truncatewords:15 }}</p>
+        </div>
+      </div>
+    </div>
+  {% empty %}
+    <div class="col-12">
+      <div class="empty-state text-center py-5">
+        <i class="fas fa-cogs fa-3x mb-3 text-muted"></i>
+        <h4 class="text-light">Projects Coming Soon</h4>
+        <p class="text-muted">I'm currently preparing to showcase my work. Please check back later!</p>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+{% endblock %}

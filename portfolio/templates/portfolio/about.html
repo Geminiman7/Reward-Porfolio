@@ -1,0 +1,120 @@
+{% extends 'portfolio/base.html' %}
+{% load static %}
+
+{% block title %}About Me — Ogboru Reward{% endblock %}
+
+{% block content %}
+
+<section class="page-header text-center mb-5">
+  <div class="container">
+    <h1 class="page-header-title">My Story</h1>
+    <p class="lead text-light-emphasis mt-3">
+      Innovating at the Intersection of Mechanical Systems and Intelligent Software
+    </p>
+  </div>
+</section>
+
+<div class="row g-5 align-items-center mb-5">
+  <div class="col-lg-5">
+    <div class="about-image-container">
+      <img src="{% static 'portfolio/images/profile.jpg' %}" alt="Ogboru Reward" class="img-fluid rounded shadow-lg">
+    </div>
+  </div>
+  <div class="col-lg-7">
+    <h2 class="mb-3">Hello, I'm Ogboru Reward 👋</h2>
+    <p class="lead text-light-emphasis">
+      A mechanical engineer and AI developer who builds practical, high-impact technology by combining deep engineering knowledge with a passion for intelligent automation.
+    </p>
+
+    <h3 class="section-title-sm mt-4">My Philosophy</h3>
+    <p>
+      I believe the most powerful innovations emerge from interdisciplinary thinking. My mission is to bridge the physical and digital worlds—using intelligent automation and robust software to solve complex engineering challenges, especially in creating sustainable and efficient energy systems.
+    </p>
+  </div>
+</div>
+
+<div class="row justify-content-center">
+  <div class="col-lg-10">
+    <h3 class="sidebar-title text-center mx-auto d-block">Core Competencies</h3>
+    <ul class="custom-list mt-4">
+      <li><i class="fas fa-robot"></i> AI & Bot Development (Telegram, Voice Cloning, Task Automation)</li>
+      <li><i class="fas fa-chart-line"></i> Simulation & Exergy Analysis (TESPy, Aspen Plus, MATLAB)</li>
+      <li><i class="fas fa-code"></i> Web Development & APIs (Flask, Django, REST)</li>
+      <li><i class="fas fa-cogs"></i> Energy Systems Integration & Control</li>
+    </ul>
+  </div>
+</div>
+
+<section class="timeline-section mt-5 py-5">
+  <div class="container">
+    <h3 class="sidebar-title text-center mx-auto d-block mb-5">My Journey</h3>
+    <div class="timeline-container">
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">2024</div>
+        <div class="timeline-content">
+          <h4>Bachelor of Engineering — Mechanical Engineering</h4>
+          <p class="text-muted">
+            Graduated with a focus on thermodynamics and sustainable design, building the foundational knowledge for my work in energy systems.
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">2023–2024</div>
+        <div class="timeline-content">
+          <h4>Energy Systems Research & Design</h4>
+          <p class="text-muted">
+            Designed and simulated complex systems, including solar-powered cold rooms and a Pump Thermal Energy System, igniting my passion for intelligent control.
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">2024</div>
+        <div class="timeline-content">
+          <h4>Bridging Engineering with AI</h4>
+          <p class="text-muted">
+            Self-taught Python and AI to automate engineering tasks, developing voice cloning tools, Telegram bots, and scheduling apps to enhance system efficiency.
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">2024–2025</div>
+        <div class="timeline-content">
+          <h4>Full-Stack Software Development</h4>
+          <p class="text-muted">
+            Built and deployed full-stack applications using Flask and Django, from crypto dashboards to AI-integrated portfolio sites, mastering backend systems and automation.
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">Now</div>
+        <div class="timeline-content">
+          <h4>AI Developer & Systems Engineer</h4>
+          <p class="text-muted">
+            Actively seeking opportunities to apply my unique blend of skills to build intelligent tools that make technology more efficient, accessible, and human-centered.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="text-center mt-4">
+  <h3 class="mb-3">Let's Collaborate</h3>
+  <p class="lead text-light-emphasis mb-4">
+    If you're looking for someone who speaks both mechanical engineering and machine learning, let's connect. I'm ready to build solutions that solve real-world problems.
+  </p>
+  <a href="{% url 'portfolio:contact' %}" class="btn btn-accent btn-lg me-2">Get In Touch</a>
+  <a href="{% static 'portfolio/documents/your-cv.pdf' %}" class="btn btn-outline-light btn-lg" download>Download CV</a>
+</section>
+
+{% endblock %}

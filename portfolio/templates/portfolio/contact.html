@@ -1,0 +1,78 @@
+{% extends 'portfolio/base.html' %}
+{% load static %}
+
+{% block title %}Contact — Ogboru Reward{% endblock %}
+
+{% block content %}
+
+<section class="page-header text-center mb-5">
+  <div class="container">
+    <h1 class="page-header-title">Get In Touch</h1>
+    <p class="lead text-light-emphasis mt-3">
+      Have a question, a project proposal, or just want to say hello? Go ahead.
+    </p>
+  </div>
+</section>
+
+<div class="row g-5">
+  
+  <div class="col-lg-7">
+    <h3 class="sidebar-title">Send a Message</h3>
+    <form method="post" class="contact-form">
+      {% csrf_token %}
+      
+      <div class="mb-4">
+        <label for="{{ form.name.id_for_label }}" class="form-label">Your Name</label>
+        <input type="text" name="{{ form.name.name }}" id="{{ form.name.id_for_label }}" class="form-control" placeholder="Enter your full name" required>
+      </div>
+      
+      <div class="mb-4">
+        <label for="{{ form.email.id_for_label }}" class="form-label">Your Email</label>
+        <input type="email" name="{{ form.email.name }}" id="{{ form.email.id_for_label }}" class="form-control" placeholder="Enter your email address" required>
+      </div>
+
+      <div class="mb-4">
+        <label for="{{ form.message.id_for_label }}" class="form-label">Message</label>
+        <textarea name="{{ form.message.name }}" id="{{ form.message.id_for_label }}" class="form-control" rows="6" placeholder="Your message here..." required></textarea>
+      </div>
+      
+      <button class="btn btn-accent btn-lg" type="submit">
+        <i class="fas fa-paper-plane me-2"></i>Send Message
+      </button>
+    </form>
+  </div>
+
+  <div class="col-lg-5">
+    <h3 class="sidebar-title">Contact Info</h3>
+    <div class="contact-info-container">
+      <div class="contact-info-item">
+        <i class="fas fa-envelope"></i>
+        <div class="info-text">
+          <h5>Email</h5>
+          <p><a href="mailto:eng.reward@gmail.com">eng.reward@gmail.com</a></p>
+        </div>
+      </div>
+      <div class="contact-info-item">
+        <i class="fas fa-map-marker-alt"></i>
+        <div class="info-text">
+          <h5>Location</h5>
+          <p>Port Harcourt, Nigeria</p>
+        </div>
+      </div>
+      <div class="contact-info-item">
+        <i class="fab fa-linkedin"></i>
+        <div class="info-text">
+          <h5>LinkedIn</h5>
+          <p><a href="#" target="_blank">https://www.linkedin.com/in/ogboru-reward-a0b551236/</a></p>
+        </div>
+      </div>
+    </div>
+    <div class="social-icons mt-4">
+        <a href="#" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
+        <a href="#" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

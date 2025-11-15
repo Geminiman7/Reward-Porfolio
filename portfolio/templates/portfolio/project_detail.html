@@ -1,0 +1,73 @@
+{% extends 'portfolio/base.html' %}
+{% load static %}
+
+{% block title %}{{ project.title }} — Ogboru Reward{% endblock %}
+
+{% block content %}
+<div class="row g-5">
+
+  <div class="col-lg-8">
+    <div class="project-header mb-4">
+      <h1 class="project-title">{{ project.title }}</h1>
+      <p class="project-meta">
+        <a href="{% url 'portfolio:category_detail' project.category.pk %}" class="meta-category">{{ project.category.name }}</a>
+        <span class="meta-divider">|</span>
+        <span class="meta-date">{{ project.created_at|date:"F j, Y" }}</span>
+      </p>
+    </div>
+
+    {% if project.image %}
+      <img src="{{ project.image.url }}" class="img-fluid rounded project-main-image mb-4" alt="{{ project.title }}">
+    {% endif %}
+
+    <div class="project-description">
+      <h3 class="section-title-sm">About The Project</h3>
+      <p>{{ project.description|linebreaks }}</p> 
+    </div>
+  </div>
+
+  <aside class="col-lg-4">
+    <div class="sidebar-widget">
+      <h3 class="sidebar-title">Project Info</h3>
+      
+      <div class="project-info-list">
+        <div class="info-item">
+          <strong>Date:</strong>
+          <span>{{ project.created_at|date:"F Y" }}</span>
+        </div>
+        <div class="info-item">
+          <strong>Category:</strong>
+          <span>{{ project.category.name }}</span>
+        </div>
+      </div>
+      
+      <h5 class="tech-title mt-4">Technologies Used</h5>
+      <div class="skills-container">
+          {% for tech in project.technologies.all %}
+              <span class="skill-tag">{{ tech.name }}</span>
+          {% empty %}
+              <p>No technologies listed.</p>
+          {% endfor %}
+      </div>
+
+      <div class="project-links mt-4">
+        {% if project.live_link %}
+          <a href="{{ project.live_link }}" class="btn btn-accent w-100 mb-2" target="_blank">
+            <i class="fas fa-external-link-alt me-2"></i>View Live Site
+          </a>
+        {% endif %}
+        {% if project.github_link %}
+          <a href="{{ project.github_link }}" class="btn btn-outline-light w-100" target="_blank">
+            <i class="fab fa-github me-2"></i>View on GitHub
+          </a>
+        {% endif %}
+      </div>
+    </div>
+    <div class="text-center mt-4">
+        <a href="{% url 'portfolio:project_list' %}" class="back-link">
+          <i class="fas fa-arrow-left me-2"></i>Back to All Projects
+        </a>
+    </div>
+  </aside>
+</div>
+{% endblock %}

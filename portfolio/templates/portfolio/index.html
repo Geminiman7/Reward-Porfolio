@@ -1,0 +1,119 @@
+{% extends 'portfolio/base.html' %}
+{% load static %}
+
+{% block title %}Home — Ogboru Reward{% endblock %}
+
+{% block content %}
+
+<section class="hero-section text-center mb-5">
+  <div class="container">
+    <img src="{% static 'portfolio/images/profile-placeholder.jpg' %}" alt="Ogboru Reward" class="profile-image mb-4">
+    <h1 class="hero-title">Mechanical Engineer & Creative Developer</h1>
+    <p class="hero-subtitle lead mt-3">
+      I bridge the gap between physical engineering and digital solutions, building efficient systems and elegant code.
+    </p>
+    <div class="hero-cta mt-4">
+      <a href="{% url 'portfolio:project_list' %}" class="btn btn-accent btn-lg me-2">View My Work</a>
+      <a href="{% url 'portfolio:contact' %}" class="btn btn-outline-light btn-lg">Get In Touch</a>
+    </div>
+  </div>
+</section>
+<section class="counters">
+  <div class="counter-item">
+    <h3><span class="counter" data-target="245">0</span>+</h3>
+    <p>Projects Completed</p>
+  </div>
+
+  <div class="counter-item">
+    <h3><span class="counter" data-target="144">0</span>+</h3>
+    <p>AI Models Built</p>
+  </div>
+
+  <div class="counter-item">
+    <h3><span class="counter" data-target="96">0</span>+</h3>
+    <p>Innovations Deployed</p>
+  </div>
+</section>
+<div class="row g-5">
+
+  <div class="col-lg-8">
+    <h2 class="section-title"><span>Featured Projects</span></h2>
+    <div class="row">
+      {% for p in featured %}
+      <div class="col-md-6 mb-4">
+        <div class="card project-card h-100">
+          <div class="project-image">
+            {% if p.image %}
+              <img src="{{ p.image.url }}" class="card-img-top" alt="{{ p.title }}">
+            {% else %}
+               <img src="https://via.placeholder.com/400x250/1E1E1E/E0E0E0?text=Project+Image" class="card-img-top" alt="{{ p.title }}">
+            {% endif %}
+            <div class="project-overlay">
+                <a href="{% url 'portfolio:project_detail' p.pk %}" class="btn btn-accent">View Project</a>
+            </div>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{ p.title }}</h5>
+            <div class="project-tags mb-2">
+                {% for tech in p.technologies.all|slice:":3" %}
+                    <span class="badge tech-badge">{{ tech.name }}</span>
+                {% endfor %}
+            </div>
+            <p class="card-text">{{ p.description|truncatewords:20 }}</p>
+          </div>
+        </div>
+      </div>
+      {% empty %}
+        <p>No featured projects to display yet.</p>
+      {% endfor %}
+    </div>
+  </div>
+
+  <aside class="col-lg-4">
+    <div class="sidebar-widget">
+        <h3 class="sidebar-title">Core Skills</h3>
+        <div class="skills-container">
+          {% for skill in skills %}
+            <span class="skill-tag"><i class="fas fa-check-circle me-2"></i>{{ skill.name }}</span>
+          {% empty %}
+            <p>No skills listed yet.</p>
+          {% endfor %}
+        </div>
+    </div>
+    
+    <div class="sidebar-widget mt-5">
+        <h3 class="sidebar-title">Categories</h3>
+        <div class="category-list">
+          {% for cat in categories %}
+            <a href="{% url 'portfolio:category_detail' cat.pk %}" class="category-link">
+              <span><i class="fas fa-folder-open me-2"></i>{{ cat.name }}</span>
+              <i class="fas fa-arrow-right"></i>
+            </a>
+          {% endfor %}
+        </div>
+    </div>
+  </aside>
+</div>
+<script>
+  const counters = document.querySelectorAll('.counter');
+
+  counters.forEach(counter => {
+    counter.innerText = '0';
+
+    const updateCounter = () => {
+      const target = +counter.getAttribute('data-target');
+      const count = +counter.innerText;
+      const increment = target / 500; // adjust speed here
+
+      if (count < target) {
+        counter.innerText = Math.ceil(count + increment);
+        setTimeout(updateCounter, 10);
+      } else {
+        counter.innerText = target;
+      }
+    };
+
+    updateCounter();
+  });
+</script>
+{% endblock %}
